@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
@@ -15,19 +18,38 @@ public class Game : PersistableObject
 	[SerializeField] private KeyCode _saveKey = KeyCode.S;
 	[SerializeField] private KeyCode _loadKey = KeyCode.L;
 	[SerializeField] private KeyCode _destoryKey = KeyCode.X;
+	[SerializeField] private int _levelCount;
 	
 	[SerializeField] private PersistentStorage _storage;
 	
 	private List<Shape> _shapes;
 	private float _creationProgress;
 	private float _destructionProgress;
+	private int _loadedLevelBuildIndex;
 
 	public float CreationSpeed { get; set; }
 	public float DestructionSpeed { get; set; }
 
-	private void Awake()
+	private void Start()
 	{
 		_shapes = new List<Shape>();
+
+		if (Application.isEditor)
+		{
+			for (var i = 0; i < SceneManager.sceneCount; i++)
+			{
+				var loadedScene = SceneManager.GetSceneAt(i);
+
+				if (loadedScene.name.Contains("Level "))
+				{
+					SceneManager.SetActiveScene(loadedScene);
+					_loadedLevelBuildIndex = loadedScene.buildIndex;
+					return;
+				}
+			}
+		}
+
+		StartCoroutine(LoadLevel(1));
 	}
 
 	private void Update()
@@ -53,7 +75,19 @@ public class Game : PersistableObject
 		{
 			DestroyShape();
 		}
-
+		else
+		{
+			for (var i = 1; i <= _levelCount; i++)
+			{
+				if (Input.GetKeyDown(KeyCode.Alpha0 + i))
+				{
+					BeginNewGame();
+					StartCoroutine(LoadLevel(i));
+					return;
+				}
+			}
+		}
+		
 		_creationProgress += Time.deltaTime * CreationSpeed;
 
 		while (_creationProgress >= 1f)
@@ -116,6 +150,21 @@ public class Game : PersistableObject
 		_shapes.Add(instance);
 	}
 	
+	private IEnumerator LoadLevel(int levelBuildIndex)
+	{
+		enabled = false;
+
+		if (_loadedLevelBuildIndex > 0)
+		{
+			yield return SceneManager.UnloadSceneAsync(_loadedLevelBuildIndex);
+		}
+		
+		yield return SceneManager.LoadSceneAsync(levelBuildIndex, LoadSceneMode.Additive);
+		SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(levelBuildIndex));
+		_loadedLevelBuildIndex = levelBuildIndex;
+		enabled = true;
+	}
+	
 	public override void Save (GameDataWriter writer) 
 	{
 		writer.Write(_shapes.Count);
@@ -150,4 +199,6 @@ public class Game : PersistableObject
 			_shapes.Add(instance);
 		}
 	}
+
+	
 }
