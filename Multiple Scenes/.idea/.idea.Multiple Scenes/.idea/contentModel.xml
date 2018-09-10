@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\orb\.Rider2018.1\system\resharper-host\Local\Transient\ReSharperHost\v12\SolutionCaches\_Multiple Scenes.872843518.00" t="ExcludeRecursive" />
+    <e p="D:\Projects\Unity Projects\Tutorials\CatLikeCoding\2.2 Object Management\Multiple Scenes\Multiple Scenes" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Game.cs" t="Include" />
+        <e p="GameDataReader.cs" t="Include" />
+        <e p="GameDataWriter.cs" t="Include" />
+        <e p="InstancedColors.shader" t="Include" />
+        <e p="PersistableObject.cs" t="Include" />
+        <e p="PersistentStorage.cs" t="Include" />
+        <e p="Shape.cs" t="Include" />
+        <e p="ShapeFactory.cs" t="Include" />
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="Multiple Scenes.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
