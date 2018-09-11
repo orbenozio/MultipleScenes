@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
 public class Game : PersistableObject
 {
-	private const int SAVE_VERSION = 1;
+	private const int SAVE_VERSION = 2;
 
 	[SerializeField] private ShapeFactory _shapeFactory;
 	
@@ -168,7 +168,8 @@ public class Game : PersistableObject
 	public override void Save (GameDataWriter writer) 
 	{
 		writer.Write(_shapes.Count);
-		
+		writer.Write(_loadedLevelBuildIndex);
+
 		for (var i = 0; i < _shapes.Count; i++) 
 		{
 			writer.Write(_shapes[i].ShapeId);
@@ -188,7 +189,8 @@ public class Game : PersistableObject
 		}
 		
 		var count = version <=0 ? -version : reader.ReadInt();
-		
+		StartCoroutine(LoadLevel(version < 2 ? 1 : reader.ReadInt()));
+
 		for (var i = 0; i < count; i++)
 		{
 			var shapeId =  version > 0 ? reader.ReadInt() : 0;

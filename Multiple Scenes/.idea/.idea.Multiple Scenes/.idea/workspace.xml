@@ -63,8 +63,8 @@
       <file leaf-file-name="Game.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Game.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="83" column="35" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
+            <state relative-caret-position="525">
+              <caret line="81" column="51" selection-start-line="81" selection-start-column="51" selection-end-line="81" selection-end-column="51" />
               <folding>
                 <marker date="1536585294122" expanded="true" signature="6:199" ph="..." />
                 <marker date="1536585294122" expanded="true" signature="366:4498" ph="{...}" />
@@ -197,12 +197,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1536579575650</updated>
-      <workItem from="1536579578797" duration="4125000" />
+      <workItem from="1536579578797" duration="4742000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4125000" />
+    <option name="totallyTimeSpent" value="4742000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -305,8 +305,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Game.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="83" column="35" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
+        <state relative-caret-position="525">
+          <caret line="81" column="51" selection-start-line="81" selection-start-column="51" selection-end-line="81" selection-end-column="51" />
           <folding>
             <marker date="1536585294122" expanded="true" signature="6:199" ph="..." />
             <marker date="1536585294122" expanded="true" signature="366:4498" ph="{...}" />
